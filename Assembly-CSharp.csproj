@@ -56,10 +56,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\BoardController.cs" />
+    <Compile Include="Assets\_Scripts\Pathfinding\Node.cs" />
+    <Compile Include="Assets\_Scripts\Pathfinding\Pathfinding.cs" />
+    <Compile Include="Assets\_Scripts\Pathfinding\PathRequestManager.cs" />
+    <Compile Include="Assets\_Scripts\Pathfinding\Unit.cs" />
     <Compile Include="Assets\_Scripts\PlayerCameraScript.cs" />
-    <Compile Include="Assets\_Scripts\Tower_Small.cs" />
-    <Compile Include="Assets\_Scripts\TowerBase.cs" />
+    <Compile Include="Assets\_Scripts\TestTriggerScript.cs" />
+    <Compile Include="Assets\_Scripts\Towers\Tower_Mid.cs" />
+    <Compile Include="Assets\_Scripts\Towers\Tower_Small.cs" />
+    <Compile Include="Assets\_Scripts\Towers\TowerBase.cs" />
     <None Include="Assets\Shaders\Highlight Shader 2.shader" />
+    <None Include="Assets\Shaders\CameraShader.shader" />
     <None Include="Assets\Shaders\Highlight Shader.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Unity/Documents/Towers/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

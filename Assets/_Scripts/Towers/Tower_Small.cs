@@ -8,7 +8,7 @@ public class Tower_Small : TowerBase
     {
         Vector2 location = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.z);
 
-        if (Mathf.Abs(coords.x - location.x) < 1 || Mathf.Abs(coords.y - location.y) < 1)
+        if (Mathf.Abs(coords.x - location.x) + Mathf.Abs(coords.y - location.y) <= 1)
         {
             base.MoveTo(coords);
         }
@@ -16,7 +16,7 @@ public class Tower_Small : TowerBase
         {
             Debug.Log("to far!");
         }
-
+        
         
     }
 }

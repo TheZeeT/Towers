@@ -49,14 +49,19 @@ public class PlayerCameraScript : MonoBehaviour
                     //Using internal function to move the tower
                     Selected_Tower.GetComponent<TowerBase>().MoveTo(new Vector2(cell.x, cell.y));
                 
-                }
-
-
-                
+                } 
             }
         }
 
 
         
     }
+
+
+    public void PlaceCamera(Vector3 pos)
+    {
+        this.gameObject.transform.position = pos;
+    }
+
+
 }
