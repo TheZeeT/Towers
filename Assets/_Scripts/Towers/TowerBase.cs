@@ -9,23 +9,16 @@ public class TowerBase : MonoBehaviour
 
     void Start()
     {
-        SelectorArrow = GameObject.Find("SelectorArrow");
-        Board = GameObject.Find("PlayBoard").GetComponent<BoardController>();
+        SelectorArrow = GameObject.Find("SelectorArrow"); //object that will be used to highlight towers 
+        Board = GameObject.Find("PlayBoard").GetComponent<BoardController>(); //the game board script
 
-        //StartCoroutine(DelayStart());
+        //adding this tower to map array so it will be known about
+        Vector2 CurPos = new Vector2(this.transform.position.x, this.transform.position.z);
+
+        Board.ActualMap[(int)CurPos.x, (int)CurPos.y].walkable = false;
+        Board.ActualMap[(int)CurPos.x, (int)CurPos.y].Tower = this.gameObject;
     }
 
-    IEnumerator DelayStart()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Initialize();
-    }
-
-    void Initialize()
-    {
-        SelectorArrow = GameObject.Find("SelectorArrow");
-        Board = GameObject.Find("BoardController").GetComponent<BoardController>();
-    }
 
     public void Highlight()
     {

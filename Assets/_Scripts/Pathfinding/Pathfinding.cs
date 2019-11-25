@@ -98,6 +98,14 @@ public class Pathfinding : MonoBehaviour
                             continue;
                         }
 
+                        //prevent from cliping corners when walk diagonaly
+                        if ((Mathf.Abs(i) + Mathf.Abs(j)) > 1)
+                        {
+                            if (MAP[currentNode.x + i, currentNode.y].walkable == false || MAP[currentNode.x, currentNode.y + j].walkable == false)
+                            {
+                                continue;
+                            }
+                        }
                         
 
                         if (MAP[currentNode.x + i, currentNode.y + j].walkable == false || closedSet.Any(any => any.x == currentNode.x + i && any.y == currentNode.y + j)) 
