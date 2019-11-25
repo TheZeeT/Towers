@@ -58,7 +58,7 @@ public class PathRequestManager : MonoBehaviour
         //currentPathRequest.callbackV3 = path; 
         //currentPathRequest.callback = success;
 
-        //currentPathRequest.PathingEntity.GetComponent<Unit>().PathFound(path, success);
+        currentPathRequest.PathingEntity.GetComponent<Unit>().PathFound(path, success);
 
         isProcessingPath = false;
         TryProcessNext();

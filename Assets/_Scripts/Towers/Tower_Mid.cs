@@ -10,7 +10,7 @@ public class Tower_Mid : TowerBase
 
         if (Mathf.Abs(coords.x - location.x) + Mathf.Abs(coords.y - location.y) <= 2)
         {
-            Debug.Log("x " + coords.x + " / " + location.x + " y : " + coords.y + " / " + location.y);
+            //Debug.Log("x " + coords.x + " / " + location.x + " y : " + coords.y + " / " + location.y);
             base.MoveTo(coords);
         }
         else

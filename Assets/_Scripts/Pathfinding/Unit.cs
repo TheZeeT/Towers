@@ -15,14 +15,14 @@ public class Unit : MonoBehaviour
         
     //}
 
-    //void Update()
-    //{
-    //    if(Input.GetKeyDown("z"))
-    //    {
-    //        GameObject.Find("PathingLord").GetComponent<PathRequestManager>().RequestPath(transform.position, target.position, gameObject);
-    //        //PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-    //    }
-    //}
+    void Update()
+    {
+        if (Input.GetKeyDown("z"))
+        {
+            GameObject.Find("PlayBoard").GetComponent<PathRequestManager>().RequestPath(transform.position, target.position, gameObject);
+            //PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        }
+    }
 
     public void MoveToTargetPos(Vector3 TargetPos)
     {

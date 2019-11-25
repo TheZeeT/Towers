@@ -7,7 +7,7 @@ using System;
 public class Pathfinding : MonoBehaviour
 {
 
-    BoardController.Map[,] MAP;
+    public BoardController.Map[,] MAP;
 
     List<Node> openSet = new List<Node>();
     List<Node> closedSet = new List<Node>();
@@ -58,9 +58,11 @@ public class Pathfinding : MonoBehaviour
         Node startNode = new Node(StX, StY, 0, GetDistance(StX, StY, TgX, TgY));
         Node targetNode = new Node(TgX, TgY,  GetDistance(StX, StY, TgX, TgY), 0);
 
+       
+
         if (MAP[StX, StY].walkable == true && MAP[TgX, TgY].walkable == true)
         {
-
+            
 
             openSet.Add(startNode);
 
@@ -96,7 +98,7 @@ public class Pathfinding : MonoBehaviour
                             continue;
                         }
 
-                        //check corners???
+                        
 
                         if (MAP[currentNode.x + i, currentNode.y + j].walkable == false || closedSet.Any(any => any.x == currentNode.x + i && any.y == currentNode.y + j)) 
                         {
@@ -207,14 +209,14 @@ public class Pathfinding : MonoBehaviour
             return waypoints.ToArray();
         }
 
-        waypoints.Add(new Vector3(path[0].x, path[0].y));
+        waypoints.Add(new Vector3(path[0].x, 1.5f, path[0].y));
 
         for (int i = 1; i < path.Count; i++)
         {
-            Vector3 directionNew = new Vector3(path[i - 1].x - path[i].x, path[i - 1].y - path[i].y);
+            Vector3 directionNew = new Vector3(path[i - 1].x - path[i].x, 1.5f, path[i - 1].y - path[i].y);
             if (directionNew != directionOld)
             {
-                waypoints.Add(new Vector3(path[i].x, path[i].y));
+                waypoints.Add(new Vector3(path[i].x, 1.5f, path[i].y));
             }
             directionOld = directionNew;
         }

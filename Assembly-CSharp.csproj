@@ -55,12 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_Scripts\BoardController.cs" />
+    <Compile Include="Assets\_Scripts\Control\PlayerCameraScript.cs" />
+    <Compile Include="Assets\_Scripts\Map\BoardController.cs" />
     <Compile Include="Assets\_Scripts\Pathfinding\Node.cs" />
     <Compile Include="Assets\_Scripts\Pathfinding\Pathfinding.cs" />
     <Compile Include="Assets\_Scripts\Pathfinding\PathRequestManager.cs" />
     <Compile Include="Assets\_Scripts\Pathfinding\Unit.cs" />
-    <Compile Include="Assets\_Scripts\PlayerCameraScript.cs" />
     <Compile Include="Assets\_Scripts\TestTriggerScript.cs" />
     <Compile Include="Assets\_Scripts\Towers\Tower_Mid.cs" />
     <Compile Include="Assets\_Scripts\Towers\Tower_Small.cs" />
