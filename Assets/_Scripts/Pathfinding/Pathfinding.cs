@@ -83,10 +83,14 @@ public class Pathfinding : MonoBehaviour
                     break;
                 }
 
+                int tempcounter = 0;
+
                 for(int i = -1; i <= 1; i++)
                 {
                     for (int j = -1; j <= 1; j++)
                     {
+
+                        
                         if(i == 0 && j == 0)
                         {
                             continue;
@@ -98,15 +102,30 @@ public class Pathfinding : MonoBehaviour
                             continue;
                         }
 
+                        if (Mathf.Abs(i) == 1 && Mathf.Abs(j) == 1)
+                        {
+                            continue;
+                        }
+
+                        if (MAP[currentNode.x, currentNode.y].walkable == false)
+                        {
+                            continue;
+                        }
+
+                       
+
                         //prevent from cliping corners when walk diagonaly
                         if ((Mathf.Abs(i) + Mathf.Abs(j)) > 1)
                         {
                             if (MAP[currentNode.x + i, currentNode.y].walkable == false || MAP[currentNode.x, currentNode.y + j].walkable == false)
                             {
-                                continue;
+                                //continue;
                             }
                         }
+
                         
+
+                        tempcounter++;
 
                         if (MAP[currentNode.x + i, currentNode.y + j].walkable == false || closedSet.Any(any => any.x == currentNode.x + i && any.y == currentNode.y + j)) 
                         {
@@ -115,9 +134,9 @@ public class Pathfinding : MonoBehaviour
 
                         Node neighbour = new Node(currentNode.x + i, currentNode.y + j);
                         neighbour.parent = currentNode;
-                            
 
-                        int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode.x, currentNode.y, neighbour.x, neighbour.y);
+
+                        int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode.x, currentNode.y, neighbour.x, neighbour.y) + MAP[neighbour.x, neighbour.y].movementPenalty;
 
                         if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Any(any => any.x == neighbour.x && any.y == neighbour.y))
                         {
@@ -137,8 +156,8 @@ public class Pathfinding : MonoBehaviour
                         }
                     }
                 }
-                
 
+                //Debug.Log("tmpcntr: " + tempcounter);
 
             }
         }
@@ -201,7 +220,7 @@ public class Pathfinding : MonoBehaviour
 
         Array.Reverse(waypoints);
 
-        //Debug.Log(" count in path " + path.Count() + " count of waypoints = " + waypoints.Length);
+        Debug.Log(" count in path " + path.Count() + " count of waypoints = " + waypoints.Length);
         return waypoints;
 
     }
@@ -209,7 +228,7 @@ public class Pathfinding : MonoBehaviour
     Vector3[] SimplifyPath(List<Node> path)
     {
         List<Vector3> waypoints = new List<Vector3>();
-        Vector3 directionOld = Vector3.zero;
+        Vector2 directionOld = Vector2.zero;
 
         if (path.Count == 0)
         {
@@ -221,8 +240,10 @@ public class Pathfinding : MonoBehaviour
 
         for (int i = 1; i < path.Count; i++)
         {
-            Vector3 directionNew = new Vector3(path[i - 1].x - path[i].x, 1.5f, path[i - 1].y - path[i].y);
-            if (directionNew != directionOld)
+            Vector2 directionNew = new Vector2(path[i - 1].x - path[i].x, path[i - 1].y - path[i].y);
+
+            //Debug.Log("Vnew = " + directionNew.x + " " + directionNew.y + " Vold = " + directionOld.x + " " + directionOld.y);
+            if (directionNew != directionOld  || true ) // skips waypoints for no reason, walk through walls, fix later TODO
             {
                 waypoints.Add(new Vector3(path[i].x, 1.5f, path[i].y));
             }

@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388769272}
   - component: {fileID: 388769271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower (1)
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388769270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1.5, z: 5}
+  m_LocalPosition: {x: 3, y: 1.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2040500180}
@@ -526,7 +526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809597648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.5, z: 1}
+  m_LocalPosition: {x: 4, y: 1.5, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -545,6 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 931426735}
+  WAIT: 0
 --- !u!1 &853473419
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +558,7 @@ GameObject:
   - component: {fileID: 853473423}
   - component: {fileID: 853473422}
   - component: {fileID: 853473421}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BG_Plane
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -676,7 +677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881359206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1.5, z: 4}
+  m_LocalPosition: {x: 2, y: 1.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1622130231}
@@ -768,8 +769,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931426731}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 1.5, z: 5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5, y: 1.5, z: 3}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -915,8 +916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Board: {fileID: 1914105433}
-  BoardHalfSizeX: 5
-  BoardHalfSizeZ: 5
+  BoardHalfSizeX: 10
+  BoardHalfSizeZ: 10
   MainCamera: {fileID: 512741734}
 --- !u!114 &1395561618
 MonoBehaviour:
@@ -1350,9 +1351,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2020550431}
   - component: {fileID: 2020550430}
-  m_Layer: 0
+  - component: {fileID: 2020550432}
+  m_Layer: 9
   m_Name: Tower
-  m_TagString: Tower
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1379,13 +1381,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020550429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1.5, z: 6}
+  m_LocalPosition: {x: 4, y: 1.5, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1104831469}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2020550432
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020550429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &2040500179
 GameObject:
   m_ObjectHideFlags: 0

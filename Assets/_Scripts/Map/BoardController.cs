@@ -16,6 +16,8 @@ public class BoardController : MonoBehaviour
         public GameObject Tower;
         
         public bool walkable;
+
+        public int movementPenalty;
     }
 
 
@@ -35,8 +37,8 @@ public class BoardController : MonoBehaviour
 
     void Start()
     {
-        BoardHalfSizeX = 5;
-        BoardHalfSizeZ = 5;
+        BoardHalfSizeX = 8;
+        BoardHalfSizeZ = 8;
 
         ActualMap = new Map[BoardHalfSizeX * 2, BoardHalfSizeZ * 2];
 
@@ -88,13 +90,21 @@ public class BoardController : MonoBehaviour
                 ActualMap[i, j].walkable = true;
 
                 ActualMap[i, j].Tower = null;
+
+                ActualMap[i, j].movementPenalty = 0;
             }
         }
 
-        if (ActualMap[1, 1].walkable == true)
-        {
-            Debug.Log("WTF");
-        }
+        int penalti = 20;
+
+        ActualMap[7, 2].walkable = false;
+        ActualMap[5, 6].walkable = false;
+        ActualMap[5, 7].walkable = false;
+        ActualMap[5, 7].movementPenalty = penalti;
+        ActualMap[6, 7].movementPenalty = penalti;
+        ActualMap[7, 7].movementPenalty = penalti;
+        ActualMap[8, 7].movementPenalty = penalti;
+
 
     }
 
@@ -106,23 +116,25 @@ public class BoardController : MonoBehaviour
             {
                 if (ActualMap != null)
                 {
-                    if (ActualMap[1, 1].walkable == false)
+                    if (ActualMap[i, j].walkable == false)
                     {
                         Gizmos.color = Color.red;
                         Gizmos.DrawCube(new Vector3(i, 2.0f, j), new Vector3(0.1f, 0.1f, 0.1f));
                     }
-                    else
+                    
+                    if(ActualMap[i, j].movementPenalty > 0)
                     {
-                        Gizmos.color = Color.black;
+                        Gizmos.color = Color.yellow;
+                        Gizmos.DrawCube(new Vector3(i, 2.0f, j), new Vector3(0.1f, 0.1f, 0.1f));
                     }
+
+                    
+
                 }
-                else
-                {
-                    Gizmos.color = Color.white;
-                }
+               
+
+
                 
-               
-               
 
                
                

@@ -6,9 +6,12 @@ public class Unit : MonoBehaviour
 
 
     public Transform target;
-    float speed = 5;
     Vector3[] path;
     int targetIndex;
+
+    float speed = 1;
+
+    public bool WAIT = false;
 
     //void Start()
     //{
@@ -48,6 +51,9 @@ public class Unit : MonoBehaviour
 
     IEnumerator FollowPath()
     {
+
+        
+
         if(path.Length == 0)
         {
             Debug.Log("You already there!");
@@ -56,6 +62,12 @@ public class Unit : MonoBehaviour
         Vector3 currentWaypoint = path[0];
         while (true)
         {
+
+            while (WAIT)
+            {
+                yield return null;
+            }
+
             if (transform.position == currentWaypoint)
             {
                 targetIndex++;
