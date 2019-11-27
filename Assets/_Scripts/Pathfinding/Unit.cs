@@ -5,31 +5,18 @@ public class Unit : MonoBehaviour
 {
 
 
-    public Transform target;
+    //public Transform target;
     Vector3[] path;
     int targetIndex;
 
-    float speed = 1;
-
     public bool WAIT = false;
 
-    //void Start()
-    //{
-        
-    //}
+    float speed = 1;
 
-    void Update()
-    {
-        if (Input.GetKeyDown("z"))
-        {
-            GameObject.Find("PlayBoard").GetComponent<PathRequestManager>().RequestPath(transform.position, target.position, gameObject);
-            //PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-        }
-    }
 
     public void MoveToTargetPos(Vector3 TargetPos)
     {
-        GameObject.Find("PathingLord").GetComponent<PathRequestManager>().RequestPath(transform.position, TargetPos, gameObject);
+        GameObject.Find("PlayBoard").GetComponent<PathRequestManager>().RequestPath(transform.position, TargetPos, gameObject);
     }
 
     public void PathFound(Vector3[] newPath, bool pathSuccessful)
@@ -79,6 +66,14 @@ public class Unit : MonoBehaviour
             }
 
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            if(currentWaypoint != transform.position)
+            {
+                Vector3 relativePos = currentWaypoint - transform.position;
+                transform.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            }
+            
+            
+            
             yield return null;
 
         }

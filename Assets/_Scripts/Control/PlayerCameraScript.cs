@@ -12,6 +12,8 @@ public class PlayerCameraScript : MonoBehaviour
     public float cameraSpeedMultiplayer = 0.5f;
     public float zoomMultiplayer = 0.1f;
 
+    public Vector3 temphit;
+
     
     void Start()
     {
@@ -80,12 +82,17 @@ public class PlayerCameraScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) //LMB
         {
+
+            LayerMask Clickable = LayerMask.GetMask("Units", "Enemies", "BG");
+
+
+
             RaycastHit hit;
             Ray ray = player_camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit)) //raycasting on mouse click
+            if (Physics.Raycast(ray, out hit, 100f, Clickable)) //raycasting on mouse click
             {
-
+                temphit = hit.point;
 
                 if (hit.transform.tag == "Tower") //when clicking a tower
                 {
@@ -112,5 +119,12 @@ public class PlayerCameraScript : MonoBehaviour
         }
     }
 
-
+    public void OnDrawGizmos()
+    {
+        if(temphit != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawCube(temphit, new Vector3(0.1f, 0.1f, 0.1f));
+        }
+    }
 }

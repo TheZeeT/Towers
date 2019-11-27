@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Tower_Small : TowerBase
 {
+
+    List<GameObject> enemiesInRange = new List<GameObject>();
+
+    public bool chek = false;
+
     public override void MoveTo(Vector2 coords)
     {
         Vector2 location = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.z);
@@ -19,4 +24,7 @@ public class Tower_Small : TowerBase
         
         
     }
+
+
+   
 }

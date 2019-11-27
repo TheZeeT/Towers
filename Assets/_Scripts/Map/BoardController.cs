@@ -37,22 +37,21 @@ public class BoardController : MonoBehaviour
 
     void Start()
     {
-        BoardHalfSizeX = 8;
+        BoardHalfSizeX = 8; //board will be always even length
         BoardHalfSizeZ = 8;
 
         ActualMap = new Map[BoardHalfSizeX * 2, BoardHalfSizeZ * 2];
 
+        //seting up
         SetMapSize();
+        CenterCamera();
         TempFillMap();
     }
 
     
     void Update()
     {
-        if (Input.GetKeyDown("b"))
-        {
-            SetMapSize();
-        }
+        
     }
 
     public void SetMapSize()
@@ -66,6 +65,11 @@ public class BoardController : MonoBehaviour
         //Change Boards Squares Size
         Board.GetComponent<MeshRenderer>().material.SetTextureScale("_MainTex", new Vector2(BoardHalfSizeX, BoardHalfSizeZ));
 
+        
+    }
+
+    void CenterCamera()
+    {
         //center Camera towards the board 
         MainCamera.GetComponent<PlayerCameraScript>().PlaceCamera(new Vector3(BoardHalfSizeX, 8.0f, BoardHalfSizeZ - 10.0f));
 
@@ -95,7 +99,7 @@ public class BoardController : MonoBehaviour
             }
         }
 
-        int penalti = 20;
+        int penalti = 0;
 
         ActualMap[7, 2].walkable = false;
         ActualMap[5, 6].walkable = false;
