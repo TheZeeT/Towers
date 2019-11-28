@@ -31,6 +31,7 @@ public class WavesManager : MonoBehaviour
     {
         GameObject FreshEnemy = Instantiate(Enemy, Gates.transform.position + new Vector3(0, 0.5f, 0), Gates.transform.rotation);
         FreshEnemy.GetComponent<Enemy>().TargetTower = Castle;
+        FreshEnemy.GetComponent<Enemy>().SetSpeed(0.5f);
         FreshEnemy.GetComponent<Enemy>().GoAndAttack();
     }
 }

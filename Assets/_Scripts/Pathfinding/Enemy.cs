@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject HealthBar;
 
-    public float speed = 1;
+    
     public int MaxHealth = 100;
     public int Health = 100;
 
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     public void SetSpeed(float _speed)
     {
-        speed = _speed;
+        this.gameObject.GetComponent<Unit>().speed = _speed;
     }
 
     public void SetHealh(int _health)
@@ -47,6 +47,10 @@ public class Enemy : MonoBehaviour
     {
         Health -= _damage;
         HealthBarAdjustment();
+        if(Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void HealthBarAdjustment()

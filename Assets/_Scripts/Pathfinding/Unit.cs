@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour
 
     public bool WAIT = false;
 
-    float speed = 1;
+    public float speed = 1;
 
 
     public void MoveToTargetPos(Vector3 TargetPos)

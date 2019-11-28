@@ -5,9 +5,47 @@ using UnityEngine;
 public class Tower_Small : TowerBase
 {
 
-    List<GameObject> enemiesInRange = new List<GameObject>();
+    public GameObject Projectile;
 
-    public bool chek = false;
+    bool shooting = false;
+
+    void Update()
+    {
+
+        if (EnemiesInRange.Count > 0 && shooting == false)
+        {
+            StartCoroutine(Cooldown());
+        }
+
+    }
+
+
+    IEnumerator Cooldown()
+    {
+        shooting = true;
+        while (EnemiesInRange.Count > 0)
+        {
+            GameObject proj = Instantiate(Projectile, this.gameObject.transform.position + new Vector3(0,1,0), this.gameObject.transform.rotation);
+
+            proj.GetComponent<Projectile>().target = EnemiesInRange[0];
+            proj.GetComponent<Projectile>().startPosition = this.gameObject.transform.position + new Vector3(0, 1, 0);
+            proj.GetComponent<Projectile>().speed = 8.0f;
+
+            yield return new WaitForSeconds(1);
+
+            if(EnemiesInRange[0] == null)
+            {
+                EnemiesInRange.RemoveAt(0);
+                break;
+            }
+        }
+
+        shooting = false;
+
+        yield break;
+
+    }
+   
 
     public override void MoveTo(Vector2 coords)
     {
@@ -21,9 +59,9 @@ public class Tower_Small : TowerBase
         {
             Debug.Log("to far!");
         }
-        
-        
+       
     }
+
 
 
    

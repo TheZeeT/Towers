@@ -7,7 +7,7 @@ public class TowerBase : MonoBehaviour
     public GameObject SelectorArrow;
     public BoardController Board;
 
-   
+    public List<GameObject> EnemiesInRange;
 
     void Start()
     {
@@ -19,6 +19,9 @@ public class TowerBase : MonoBehaviour
 
         Board.ActualMap[(int)CurPos.x, (int)CurPos.y].walkable = false;
         Board.ActualMap[(int)CurPos.x, (int)CurPos.y].Tower = this.gameObject;
+
+        EnemiesInRange = new List<GameObject>();
+    
     }
 
 
@@ -54,7 +57,19 @@ public class TowerBase : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("IN RAGE!");
+         if (other.gameObject.tag.Equals("Enemy"))
+         {
+             EnemiesInRange.Add(other.gameObject);
+         }
+
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+         if (other.gameObject.tag.Equals("Enemy"))
+         {
+             EnemiesInRange.Remove(other.gameObject);
+         }
 
     }
     
