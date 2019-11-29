@@ -54,7 +54,7 @@ public class PlayerCameraScript : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            this.gameObject.transform.parent.transform.RotateAround(this.gameObject.transform.position, Vector3.up, (Input.GetAxis("Mouse X") * 100) * Time.deltaTime);
+            this.gameObject.transform.parent.transform.RotateAround(this.gameObject.transform.position, Vector3.up, (Input.GetAxis("Mouse X") * 50) * Time.deltaTime);
 
         }
 
@@ -83,7 +83,7 @@ public class PlayerCameraScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) //LMB
         {
 
-            LayerMask Clickable = LayerMask.GetMask("Units", "Enemies", "BG");
+            LayerMask Clickable = LayerMask.GetMask("Units", "Enemies", "BG", "Structures");
 
 
 
@@ -98,6 +98,14 @@ public class PlayerCameraScript : MonoBehaviour
                 {
 
                     Selected_Tower = hit.transform.gameObject.transform.parent.gameObject;  //changing curent tower on click
+
+                    Selected_Tower.GetComponent<TowerBase>().Highlight();
+                }
+
+                if (hit.transform.tag == "Castle") //when clicking a castle
+                {
+
+                    Selected_Tower = hit.transform.gameObject.transform.Find("Castle_Core").gameObject; //changing curent tower on click
 
                     Selected_Tower.GetComponent<TowerBase>().Highlight();
                 }

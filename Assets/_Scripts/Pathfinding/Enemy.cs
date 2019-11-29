@@ -61,7 +61,20 @@ public class Enemy : MonoBehaviour
         }
 
         HealthBar.gameObject.transform.localScale = new Vector3(1, (1.0f / MaxHealth) * Health, 1);
+
+        float r = 0.3f + (1.0f / MaxHealth / 2) * Health;
+        Color nc = new Color(Mathf.Clamp(r,0,1), 0.2f, 0.0f);
+        HealthBar.gameObject.GetComponentInChildren<MeshRenderer>().material.color = nc;
+
     }
 
    
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag.Equals("Tower"))
+        {
+            collision.gameObject.GetComponentInParent<TowerBase>().Health -= Health;
+            Destroy(this.gameObject);
+        }
+    }
 }

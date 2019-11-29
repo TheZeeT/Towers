@@ -9,11 +9,29 @@ public class TowerBase : MonoBehaviour
 
     public List<GameObject> EnemiesInRange;
 
+    public int Health;
+
     void Start()
+    {
+        Initialize();
+        AddToMap();
+        
+    
+    }
+
+    void Update()
+    {
+        CheckStatus();
+    }
+
+    public virtual void Initialize()
     {
         SelectorArrow = GameObject.Find("SelectorArrow"); //object that will be used to highlight towers 
         Board = GameObject.Find("PlayBoard").GetComponent<BoardController>(); //the game board script
+    }
 
+    public virtual void AddToMap()
+    {
         //adding this tower to map array so it will be known about
         Vector2 CurPos = new Vector2(this.transform.position.x, this.transform.position.z);
 
@@ -21,19 +39,34 @@ public class TowerBase : MonoBehaviour
         Board.ActualMap[(int)CurPos.x, (int)CurPos.y].Tower = this.gameObject;
 
         EnemiesInRange = new List<GameObject>();
-    
     }
 
-
-    public void Highlight()
+    public virtual void SetHealth(int _health)
     {
+        Health = _health;
+    }
 
+    public virtual void CheckStatus()
+    {
+         if(Health <= 0)
+         {
+             Destroy(this.gameObject);
+         }
+    }
+
+    public virtual void Highlight()
+    {
+        
         //when selected yellow square will be plased under tower
         SelectorArrow.transform.position = this.gameObject.transform.position + new Vector3 (0,-0.5f,0);
+        //SelectorArrow.transform.localScale = new Vector3(0.8f, 0.05f, 0.8f);
 
         SelectorArrow.gameObject.transform.parent = this.gameObject.transform;
+
+        SelectorArrow.transform.localScale = new Vector3(0.8f, 0.05f, 0.8f);
         
     }
+
 
     public virtual void MoveTo(Vector2 coords)
     {
@@ -63,6 +96,7 @@ public class TowerBase : MonoBehaviour
          }
 
     }
+
 
     void OnTriggerExit(Collider other)
     {

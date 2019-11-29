@@ -36,17 +36,22 @@ public class Projectile : MonoBehaviour
 
         float timeInterval = Time.time - startTime;
         gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);
-        targetPosition = target.transform.position;
+        if(target.gameObject != null)
+        {
+            targetPosition = target.transform.position;
+        }
+        
+        
     }
 
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("this = " + other.gameObject.tag);
+        //Debug.Log("this hit = " + other.gameObject.tag);
 
         if(other.gameObject.tag.Equals("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().LoseHP(40);
+            other.gameObject.GetComponent<Enemy>().LoseHP(damage);
             Destroy(this.gameObject);
         }
     }
