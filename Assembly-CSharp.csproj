@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\Control\PlayerCameraScript.cs" />
     <Compile Include="Assets\_Scripts\Map\BoardController.cs" />
+    <Compile Include="Assets\_Scripts\Map\MainMenu.cs" />
+    <Compile Include="Assets\_Scripts\Map\MapLoader.cs" />
     <Compile Include="Assets\_Scripts\Map\WavesManager.cs" />
     <Compile Include="Assets\_Scripts\Pathfinding\Enemy.cs" />
     <Compile Include="Assets\_Scripts\Pathfinding\Node.cs" />
