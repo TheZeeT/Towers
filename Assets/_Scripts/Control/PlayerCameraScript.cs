@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerCameraScript : MonoBehaviour
 {
@@ -84,13 +85,13 @@ public class PlayerCameraScript : MonoBehaviour
         {
 
             LayerMask Clickable = LayerMask.GetMask("Units", "Enemies", "BG", "Structures");
-
+            //layer mask of klikble things
 
 
             RaycastHit hit;
             Ray ray = player_camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 100f, Clickable)) //raycasting on mouse click
+            if (Physics.Raycast(ray, out hit, 100f, Clickable) && !EventSystem.current.IsPointerOverGameObject()) //raycasting on mouse click AND check if cursor is over pointing over UI, to prevent kliking things bihind buttons
             {
                 temphit = hit.point;
 
@@ -129,8 +130,9 @@ public class PlayerCameraScript : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        if(temphit != null)
+        if(temphit != null) 
         {
+            // draw blue cube on ckiked point on a map
             Gizmos.color = Color.blue;
             Gizmos.DrawCube(temphit, new Vector3(0.1f, 0.1f, 0.1f));
         }

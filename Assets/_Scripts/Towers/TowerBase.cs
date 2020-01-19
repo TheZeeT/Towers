@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerBase : MonoBehaviour
+
+    /*
+    Base for all other tower scripts
+        
+     */
 {
     public GameObject SelectorArrow;
     public BoardController Board;
@@ -68,7 +73,7 @@ public class TowerBase : MonoBehaviour
     }
 
 
-    public virtual void MoveTo(Vector2 coords)
+    public virtual void MoveTo(Vector2 coords) // TODO - add colldown
     {
         
         Vector2 CurPos = new Vector2(this.transform.position.x, this.transform.position.z);
